@@ -139,20 +139,6 @@
     "demo_error_score": "Verification rejected. Score: {score}.",
     "setup_body": "Set NEXT_PUBLIC_RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY from the Google reCAPTCHA admin console, then restart the app to enable the live demo."
   },
-  "Counter": {
-    "meta_title": "Counter",
-    "meta_description": "An example of DB operation",
-    "security_powered_by": "Security, bot detection and rate limiting powered by"
-  },
-  "CounterForm": {
-    "presentation": "The counter is stored in the database and incremented by the value you provide.",
-    "label_increment": "Increment by",
-    "button_increment": "Increment",
-    "error_increment_range": "Value must be between 1 and 3"
-  },
-  "CurrentCount": {
-    "count": "Count: {count}"
-  },
   "About": {
     "meta_title": "About",
     "meta_description": "About the Integrations Module",

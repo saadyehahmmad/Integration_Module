@@ -5,7 +5,6 @@ export const Env = createEnv({
   server: {
     ARCJET_KEY: z.string().startsWith('ajkey_').optional(),
     AUTH_SECRET: z.string().min(32),
-    DATABASE_URL: z.string().min(1),
     SIGNFLOW_BASE_URL: z.url(),
     SIGNFLOW_GSB_BASE_URL: z.url(),
     SIGNFLOW_CLIENT_ID: z.string().min(1),
@@ -36,7 +35,6 @@ export const Env = createEnv({
   runtimeEnv: {
     ARCJET_KEY: process.env.ARCJET_KEY,
     AUTH_SECRET: process.env.AUTH_SECRET,
-    DATABASE_URL: process.env.DATABASE_URL,
     SIGNFLOW_BASE_URL: process.env.SIGNFLOW_BASE_URL,
     SIGNFLOW_GSB_BASE_URL: process.env.SIGNFLOW_GSB_BASE_URL,
     SIGNFLOW_CLIENT_ID: process.env.SIGNFLOW_CLIENT_ID,

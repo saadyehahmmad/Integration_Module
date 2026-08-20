@@ -6,6 +6,7 @@ const config: KnipConfig = {
   // Dependencies to ignore during analysis
   ignoreDependencies: [
     '@swc/helpers', // Avoid error in CI: "`npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync."
+    'lefthook', // Used by git hooks, not imported in source
   ],
   // Include custom Playwright test file suffixes
   playwright: {
