@@ -7,6 +7,8 @@ import { IntegrationDetailsTable } from '@/modules/integrations/components/Integ
 import { IntegrationFlowSteps } from '@/modules/integrations/components/IntegrationFlowSteps';
 import { IntegrationPanel } from '@/modules/integrations/components/IntegrationPanel';
 import { IntegrationShell } from '@/modules/integrations/components/IntegrationShell';
+import { SignflowEndpointsTable } from '@/modules/integrations/components/SignflowEndpointsTable';
+import { SIGNFLOW_ENDPOINTS } from '@/modules/integrations/sanad/endpoints';
 
 type SanadIntegrationDetailProps = {
   locale: string;
@@ -40,6 +42,23 @@ export const SanadIntegrationDetail = async (props: SanadIntegrationDetailProps)
     { label: t('fields.status'), value: t('values.status_ready') },
   ];
 
+  const ibmOnlyEndpoints = SIGNFLOW_ENDPOINTS.filter((endpoint) => endpoint.access === 'ibm_only');
+  const endpointLabels = {
+    method: t('endpoints.method'),
+    endpoint: t('endpoints.endpoint'),
+    access: t('endpoints.access'),
+    accessLevels: {
+      ibm_only: t('endpoints.access_levels.ibm_only'),
+      ibm_and_access_token: t('endpoints.access_levels.ibm_and_access_token'),
+      ibm_and_oauth_secrets: t('endpoints.access_levels.ibm_and_oauth_secrets'),
+      oauth_authorize: t('endpoints.access_levels.oauth_authorize'),
+    },
+  };
+  const baseUrls = {
+    signflow: Env.SIGNFLOW_BASE_URL,
+    gsb: Env.SIGNFLOW_GSB_BASE_URL,
+  };
+
   return (
     <IntegrationShell
       backLabel={t('back_to_hub')}
@@ -50,6 +69,24 @@ export const SanadIntegrationDetail = async (props: SanadIntegrationDetailProps)
     >
       <IntegrationPanel title={t('details_title')}>
         <IntegrationDetailsTable rows={rows} />
+      </IntegrationPanel>
+
+      <IntegrationPanel title={t('ibm_only_title')} tone="muted">
+        <p className="mb-4 text-sm text-stone-600">{t('ibm_only_description')}</p>
+        <SignflowEndpointsTable
+          endpoints={ibmOnlyEndpoints}
+          baseUrls={baseUrls}
+          labels={endpointLabels}
+        />
+      </IntegrationPanel>
+
+      <IntegrationPanel title={t('endpoints_title')}>
+        <p className="mb-4 text-sm text-stone-600">{t('endpoints_description')}</p>
+        <SignflowEndpointsTable
+          endpoints={SIGNFLOW_ENDPOINTS}
+          baseUrls={baseUrls}
+          labels={endpointLabels}
+        />
       </IntegrationPanel>
 
       <IntegrationPanel title={t('flow_title')} tone="muted">

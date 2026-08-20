@@ -59,6 +59,21 @@
     "badge_ready": "Ready",
     "description": "Jordan digital identity authentication through MoDEE SignFlow. This module is live and can start an SSO session from this application.",
     "details_title": "Integration details",
+    "ibm_only_title": "IBM keys only",
+    "ibm_only_description": "These GSB endpoints can be called with only X-IBM-Client-Id and X-IBM-Client-Secret. They do not need SignFlow ApiKey, SecretKey, or an access token.",
+    "endpoints_title": "SignFlow endpoint access",
+    "endpoints_description": "Credential requirements per MoDEE SignFlow v3.3.1. IBM gateway headers are required on all GSB calls; SSO still needs ApiKey and SecretKey for authorize and token exchange.",
+    "endpoints": {
+      "method": "Method",
+      "endpoint": "Endpoint",
+      "access": "Access",
+      "access_levels": {
+        "ibm_only": "IBM keys only",
+        "ibm_and_access_token": "IBM + access token",
+        "ibm_and_oauth_secrets": "IBM + ApiKey + SecretKey",
+        "oauth_authorize": "ApiKey (authorize)"
+      }
+    },
     "flow_title": "Authentication flow",
     "flow_steps": {
       "authorize": "Redirect the user to SignFlow authorize with client id, redirect URI, state, and PKCE challenge.",

@@ -64,7 +64,7 @@ All variables are validated in `src/libs/Env.ts`. Never read `process.env` direc
 | Variable | Description |
 | --- | --- |
 | `SIGNFLOW_REDIRECT_URI` | Override callback URL (default: `{origin}/api/auth/callback`) |
-| `NEXT_PUBLIC_APP_URL` | Public app origin (Vercel / production) |
+| `NEXT_PUBLIC_APP_URL` | Public app origin (set this on Vercel to your real domain) |
 | `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | reCAPTCHA v3 site key |
 | `RECAPTCHA_SECRET_KEY` | reCAPTCHA v3 secret |
 | `RECAPTCHA_MIN_SCORE` | Score threshold (default `0.5`) |
