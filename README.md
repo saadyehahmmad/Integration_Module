@@ -6,7 +6,6 @@ Next.js app for browsing and exercising integration services: **SANAD SSO** (MoD
 Built from [Next.js Boilerplate](https://github.com/ixartz/Next-js-Boilerplate).
 
 ## Stack
-
 - Next.js 16 (App Router) + React 19 + TypeScript
 - next-intl (English)
 - Zod-validated env (`src/libs/Env.ts`)
