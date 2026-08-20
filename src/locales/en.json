@@ -1,0 +1,202 @@
+{
+  "RootLayout": {
+    "home_link": "Home",
+    "integrations_link": "Integrations",
+    "sign_in_link": "Sign in"
+  },
+  "BaseTemplate": {
+    "description": "Service modules for identity, messaging, and customer contact",
+    "footer_text": "© {year} {name}.",
+    "main_navigation_label": "Main navigation"
+  },
+  "Index": {
+    "meta_title": "Integrations Module",
+    "meta_description": "Browse identity, OTP, SMS, and call-center integrations as ready-to-use service modules.",
+    "eyebrow": "Service catalog",
+    "title": "Integrations Module",
+    "description": "Each card is a service module. Open a ready module to view endpoints and connect, or review planned services that are not live yet.",
+    "cta_label": "Open integrations",
+    "sanad_cta": "Open SANAD SSO"
+  },
+  "IntegrationsHub": {
+    "eyebrow": "Service modules",
+    "title": "Integrations Module",
+    "description": "Identity and messaging capabilities delivered as discrete services. Ready modules expose live endpoints; coming soon modules are reserved for future rollout.",
+    "open_module": "Open module",
+    "status": {
+      "ready": "Ready",
+      "planned": "Planned",
+      "coming_soon": "Coming soon"
+    },
+    "modules": {
+      "otp": {
+        "title": "OTP",
+        "description": "One-time password delivery and verification as a reusable service module for login and transaction flows."
+      },
+      "sms": {
+        "title": "SMS",
+        "description": "Transactional SMS messaging service for notifications, alerts, and delivery receipts."
+      },
+      "call-center": {
+        "title": "Call center",
+        "description": "Voice and agent contact integration for assisted verification and customer support handoff."
+      },
+      "sanad-sso": {
+        "title": "SANAD SSO",
+        "description": "MoDEE SignFlow digital identity login with OAuth 2.0 authorization code and PKCE."
+      },
+      "google-recaptcha": {
+        "title": "Google reCAPTCHA",
+        "description": "Bot protection and challenge verification for forms, login, and public endpoints."
+      }
+    }
+  },
+  "SanadIntegration": {
+    "meta_title": "SANAD SSO integration",
+    "meta_description": "Live SANAD SSO integration details for MoDEE SignFlow.",
+    "back_to_hub": "Integrations Module",
+    "title": "SANAD SSO",
+    "badge_ready": "Ready",
+    "description": "Jordan digital identity authentication through MoDEE SignFlow. This module is live and can start an SSO session from this application.",
+    "details_title": "Integration details",
+    "flow_title": "Authentication flow",
+    "flow_steps": {
+      "authorize": "Redirect the user to SignFlow authorize with client id, redirect URI, state, and PKCE challenge.",
+      "callback": "SignFlow returns an authorization code to the registered callback URI.",
+      "token": "Exchange the code and PKCE verifier at the GSB token endpoint.",
+      "userinfo": "Load national ID, email, and mobile from the user info endpoint.",
+      "session": "Store an encrypted application session cookie and revoke the SignFlow token on logout."
+    },
+    "fields": {
+      "provider": "Provider",
+      "protocol": "Protocol",
+      "auth_url": "Authorize URL",
+      "token_url": "Token URL",
+      "userinfo_url": "User info URL",
+      "logout_url": "Logout URL",
+      "redirect_uri": "Redirect URI",
+      "client_id": "Client ID",
+      "pkce": "PKCE",
+      "status": "Status"
+    },
+    "values": {
+      "provider": "MoDEE SignFlow / SANAD",
+      "protocol": "OAuth 2.0 authorization code + PKCE",
+      "pkce": "S256 (static verifier and challenge)",
+      "status_ready": "Ready"
+    },
+    "connect_title": "Connect",
+    "connect_description": "Start SANAD SSO to verify identity and create a local session.",
+    "connect_button": "Sign in with SANAD",
+    "connected_title": "Connected",
+    "connected_as": "Signed in as national ID {id}.",
+    "view_profile": "View profile"
+  },
+  "PlannedIntegration": {
+    "back_to_hub": "Integrations Module",
+    "body": "This service module is defined in the catalog but is not connected to a live provider yet. Configuration and endpoints will appear here when the module is enabled."
+  },
+  "RecaptchaIntegration": {
+    "meta_title": "Google reCAPTCHA integration",
+    "meta_description": "Live Google reCAPTCHA v3 verification for forms and public endpoints.",
+    "back_to_hub": "Integrations Module",
+    "title": "Google reCAPTCHA",
+    "badge_ready": "Ready",
+    "description": "Bot protection with Google reCAPTCHA v3. The browser requests a token, then this application verifies it with Google and applies a minimum score threshold.",
+    "details_title": "Integration details",
+    "flow_title": "Verification flow",
+    "flow_steps": {
+      "load": "Load the Google reCAPTCHA script with the public site key.",
+      "execute": "Call grecaptcha.execute with an action name to obtain a short-lived token.",
+      "verify": "POST the token to /api/recaptcha/verify, which calls Google siteverify with the secret key.",
+      "score": "Accept the request when success is true, the action matches, and the score meets the configured minimum."
+    },
+    "fields": {
+      "provider": "Provider",
+      "version": "Version",
+      "verify_url": "Google verify URL",
+      "app_verify_url": "App verify URL",
+      "site_key": "Site key",
+      "secret_key": "Secret key",
+      "min_score": "Minimum score",
+      "status": "Status"
+    },
+    "values": {
+      "provider": "Google reCAPTCHA",
+      "version": "v3",
+      "not_set": "Not configured",
+      "secret_configured": "Configured",
+      "status_ready": "Ready",
+      "status_needs_keys": "Keys required"
+    },
+    "demo_title": "Live demo",
+    "demo_description": "Runs reCAPTCHA v3 and verifies the token through this application's API.",
+    "demo_button": "Run verification",
+    "demo_pending": "Verifying…",
+    "demo_success": "Verification passed. Score: {score}.",
+    "demo_error_loading": "reCAPTCHA script is not ready.",
+    "demo_error_failed": "Verification failed.",
+    "demo_error_score": "Verification rejected. Score: {score}.",
+    "setup_body": "Set NEXT_PUBLIC_RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY from the Google reCAPTCHA admin console, then restart the app to enable the live demo."
+  },
+  "Counter": {
+    "meta_title": "Counter",
+    "meta_description": "An example of DB operation",
+    "security_powered_by": "Security, bot detection and rate limiting powered by"
+  },
+  "CounterForm": {
+    "presentation": "The counter is stored in the database and incremented by the value you provide.",
+    "label_increment": "Increment by",
+    "button_increment": "Increment",
+    "error_increment_range": "Value must be between 1 and 3"
+  },
+  "CurrentCount": {
+    "count": "Count: {count}"
+  },
+  "About": {
+    "meta_title": "About",
+    "meta_description": "About the Integrations Module",
+    "about_paragraph": "The Integrations Module presents identity and messaging capabilities as discrete services that applications can adopt one module at a time.",
+    "translation_powered_by": "Translation powered by"
+  },
+  "Portfolio": {
+    "meta_title": "Portfolio",
+    "meta_description": "Welcome to my portfolio page!",
+    "presentation": "Welcome to my portfolio page! Here you will find a carefully curated collection of my work and accomplishments. Through this portfolio, I'm to showcase my expertise, creativity, and the value I can bring to your projects.",
+    "portfolio_name": "Portfolio {name}",
+    "error_reporting_powered_by": "Error reporting powered by"
+  },
+  "PortfolioSlug": {
+    "meta_title": "Portfolio {slug}",
+    "meta_description": "Portfolio {slug} description",
+    "header": "Portfolio {slug}",
+    "content": "Created a set of promotional materials and branding elements for a corporate event. Crafted a visually unified theme, encompassing a logo, posters, banners, and digital assets. Integrated the client's brand identity while infusing it with a contemporary and innovative approach.",
+    "code_review_powered_by": "Code review powered by"
+  },
+  "SignIn": {
+    "meta_title": "Sign in",
+    "meta_description": "Sign in with your SANAD digital identity.",
+    "title": "Sign in",
+    "description": "Continue with SANAD SSO to verify your identity and open the Integrations Module.",
+    "sanad_button": "Sign in with SANAD",
+    "error_interrupted": "Sign in was interrupted.",
+    "error_credentials": "Incorrect login credentials.",
+    "error_generic": "Sign in failed."
+  },
+  "UserProfile": {
+    "title": "Your profile",
+    "national_id_label": "National ID",
+    "email_label": "Email",
+    "mobile_label": "Mobile",
+    "date_of_birth_label": "Date of birth",
+    "empty_value": "Not provided"
+  },
+  "DashboardLayout": {
+    "meta_title": "Integrations Module",
+    "meta_description": "Browse and connect identity and messaging service modules.",
+    "dashboard_link": "Integrations",
+    "user_profile_link": "Profile",
+    "sign_out": "Sign out",
+    "sign_in": "Sign in"
+  }
+}

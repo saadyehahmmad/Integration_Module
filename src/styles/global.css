@@ -1,0 +1,8 @@
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-source-sans), 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-source-serif), 'Source Serif 4', ui-serif, Georgia, serif;
+}
