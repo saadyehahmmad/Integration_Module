@@ -6,7 +6,6 @@ Next.js app for browsing and exercising integration services: **SANAD SSO** (MoD
 Built from [Next.js S3dyeh](https://github.com/ixartz/Next-js-S3dyeh).
 
 ## Stack
-
 - Next.js 16 (App Router) + React 19 + TypeScript
 - next-intl (English)
 - Zod-validated env (`src/libs/Env.ts`)
