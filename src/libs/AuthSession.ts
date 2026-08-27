@@ -34,7 +34,7 @@ const SSO_COOKIE_MAX_AGE_SECONDS = 60 * 10;
 
 /**
  * Derives a 32-byte AES key from the application secret.
- * @param secret The AUTH_SECRET environment value.
+ * @param secret The secret used for cookie encryption.
  * @returns A SHA-256 digest used as the encryption key.
  */
 const getKey = (secret: string) => createHash('sha256').update(secret).digest();
@@ -42,7 +42,7 @@ const getKey = (secret: string) => createHash('sha256').update(secret).digest();
 /**
  * Encrypts a session payload into a URL-safe cookie value.
  * @param session The authenticated user session.
- * @param secret The AUTH_SECRET environment value.
+ * @param secret The secret used for cookie encryption.
  * @returns The encrypted cookie payload.
  */
 export const encryptSession = (session: AuthSession, secret: string) => {
@@ -60,7 +60,7 @@ export const encryptSession = (session: AuthSession, secret: string) => {
 /**
  * Decrypts a session cookie payload.
  * @param token The encrypted cookie value.
- * @param secret The AUTH_SECRET environment value.
+ * @param secret The secret used for cookie encryption.
  * @returns The session when valid, otherwise null.
  */
 export const decryptSession = (token: string, secret: string): AuthSession | null => {
@@ -109,6 +109,8 @@ export const safeEqual = (left: string, right: string) => {
  */
 export const createOAuthState = () => randomBytes(16).toString('hex');
 
+const getSessionSecret = () => Env.SIGNFLOW_CLIENT_SECRET;
+
 const cookieOptions = (maxAge: number) => ({
   httpOnly: true,
   sameSite: 'lax' as const,
@@ -125,7 +127,7 @@ const cookieOptions = (maxAge: number) => ({
 export const applySessionCookie = (response: NextResponse, session: AuthSession) => {
   response.cookies.set(
     SESSION_COOKIE,
-    encryptSession(session, Env.AUTH_SECRET),
+    encryptSession(session, getSessionSecret()),
     cookieOptions(SESSION_MAX_AGE_SECONDS),
   );
 };
@@ -161,7 +163,7 @@ export const getSession = async (): Promise<AuthSession | null> => {
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
 
-  return token ? decryptSession(token, Env.AUTH_SECRET) : null;
+  return token ? decryptSession(token, getSessionSecret()) : null;
 };
 
 /**

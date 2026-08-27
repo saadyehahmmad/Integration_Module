@@ -15,7 +15,7 @@ const emailChannel = new EmailAlertChannel('email-channel-1', {
 export const config = defineConfig({
   projectName: process.env.CHECKLY_PROJECT_NAME ?? '',
   logicalId: process.env.CHECKLY_LOGICAL_ID ?? '',
-  repoUrl: 'https://github.com/ixartz/Next-js-Boilerplate',
+  repoUrl: 'https://github.com/ixartz/Next-js-S3dyeh',
   checks: {
     locations: ['us-east-1', 'eu-central-1'],
     tags: ['website'],
@@ -27,7 +27,7 @@ export const config = defineConfig({
     },
     playwrightConfig: {
       use: {
-        baseURL: process.env.ENVIRONMENT_URL ?? process.env.NEXT_PUBLIC_APP_URL,
+        baseURL: process.env.ENVIRONMENT_URL ?? 'http://localhost:3000',
         extraHTTPHeaders: {
           'x-vercel-protection-bypass': process.env.VERCEL_BYPASS_TOKEN,
         },

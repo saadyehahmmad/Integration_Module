@@ -1,11 +1,11 @@
 {
-  "name": "next-js-boilerplate",
-  "author": "Ixartz (https://github.com/ixartz)",
+  "name": "next-js-S3dyeh",
+  "author": "S3dyeh",
   "type": "module",
   "scripts": {
     "dev:spotlight": "npx @spotlightjs/spotlight",
     "dev:next": "next dev",
-    "dev": "run-p dev:*",
+    "dev": "next dev",
     "build:next": "next build",
     "build-local": "npm run build:next",
     "build": "npm run build:next",

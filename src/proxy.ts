@@ -8,6 +8,8 @@ import { getLocaleFromPathname, localizePath, routing } from './libs/I18nRouting
 
 const handleI18nRouting = createMiddleware(routing);
 
+const SANAD_CALLBACK_PATH = '/icensus/auth/sanad/callback';
+
 /**
  * Returns true when the pathname is a profile route that requires a session.
  * @param pathname The request pathname.
@@ -33,6 +35,10 @@ const aj = arcjet.withRule(
 );
 
 export default async function proxy(request: NextRequest) {
+  if (request.nextUrl.pathname === SANAD_CALLBACK_PATH) {
+    return NextResponse.next();
+  }
+
   if (process.env.ARCJET_KEY) {
     const decision = await aj.protect(request);
 

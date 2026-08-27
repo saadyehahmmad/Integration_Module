@@ -1,7 +1,6 @@
 import * as z from 'zod';
 import { Env } from '@/libs/Env';
 import { logger } from '@/libs/Logger';
-import { getBaseUrl } from '@/utils/Helpers';
 
 const optionalText = z
   .union([z.string(), z.number()])
@@ -24,8 +23,7 @@ const UserInfoSchema = z.object({
  * Resolves the OAuth callback URI registered with SignFlow.
  * @returns The absolute callback URL.
  */
-export const getSignflowRedirectUri = () =>
-  Env.SIGNFLOW_REDIRECT_URI ?? `${getBaseUrl()}/api/auth/callback`;
+export const getSignflowRedirectUri = () => Env.SIGNFLOW_REDIRECT_URI;
 
 /**
  * Maps the app locale to a SignFlow culture value.

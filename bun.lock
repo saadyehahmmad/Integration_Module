@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "next-js-boilerplate",
+      "name": "next-js-S3dyeh",
       "dependencies": {
         "@arcjet/next": "^1.4.0",
         "@google-cloud/recaptcha-enterprise": "^7.0.0",

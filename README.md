@@ -3,7 +3,7 @@
 Next.js app for browsing and exercising integration services: **SANAD SSO** (MoDEE SignFlow) and **Google reCAPTCHA v3**, with placeholders for OTP, SMS, and call center.
 
 
-Built from [Next.js Boilerplate](https://github.com/ixartz/Next-js-Boilerplate).
+Built from [Next.js S3dyeh](https://github.com/ixartz/Next-js-S3dyeh).
 
 ## Stack
 
@@ -15,7 +15,7 @@ Built from [Next.js Boilerplate](https://github.com/ixartz/Next-js-Boilerplate).
 
 ```bash
 npm install
-cp .env .env.local   # or copy from your secrets store
+cp .env.example .env   # or copy from your secrets store
 npm run dev
 ```
 
@@ -47,35 +47,46 @@ src/libs/
 
 ## Environment
 
-All variables are validated in `src/libs/Env.ts`. Never read `process.env` directly in app code.
+All app variables are validated in `src/libs/Env.ts`. The environment files use this shape:
 
-### Required (auth)
+```env
+SIGNFLOW_BASE_URL=
+SIGNFLOW_GSB_BASE_URL=
+SIGNFLOW_CLIENT_ID=
+SIGNFLOW_REDIRECT_URI=
+SIGNFLOW_CLIENT_SECRET=
+SIGNFLOW_IBM_CLIENT_ID=
+SIGNFLOW_IBM_CLIENT_SECRET=
+SIGNFLOW_PKCE_VERIFIER=
+SIGNFLOW_PKCE_CHALLENGE=
+RECAPTCHA_MIN_SCORE=
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=
+RECAPTCHA_SECRET_KEY=
+NEXT_PUBLIC_LOGGING_LEVEL=
+```
+
+### Variables
 
 | Variable | Description |
 | --- | --- |
-| `AUTH_SECRET` | ≥32 chars; encrypts the session cookie |
 | `SIGNFLOW_BASE_URL` | SignFlow auth base URL |
 | `SIGNFLOW_GSB_BASE_URL` | SignFlow GSB (token / userinfo / logout) base URL |
-| `SIGNFLOW_CLIENT_ID` / `SIGNFLOW_CLIENT_SECRET` | OAuth client credentials |
+| `SIGNFLOW_CLIENT_ID` | OAuth client ID |
+| `SIGNFLOW_REDIRECT_URI` | Registered callback URL |
+| `SIGNFLOW_CLIENT_SECRET` | OAuth client secret and local session encryption secret |
 | `SIGNFLOW_IBM_CLIENT_ID` / `SIGNFLOW_IBM_CLIENT_SECRET` | IBM API gateway headers |
 | `SIGNFLOW_PKCE_VERIFIER` / `SIGNFLOW_PKCE_CHALLENGE` | Static PKCE pair registered with SignFlow |
-
-### Optional
-
-| Variable | Description |
-| --- | --- |
-| `SIGNFLOW_REDIRECT_URI` | Override callback URL (default: `{origin}/api/auth/callback`) |
-| `NEXT_PUBLIC_APP_URL` | Public app origin (set this on Vercel to your real domain) |
+| `RECAPTCHA_MIN_SCORE` | Score threshold (default `0.5`) |
 | `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | reCAPTCHA v3 site key |
 | `RECAPTCHA_SECRET_KEY` | reCAPTCHA v3 secret |
-| `RECAPTCHA_MIN_SCORE` | Score threshold (default `0.5`) |
+| `NEXT_PUBLIC_LOGGING_LEVEL` | Console logging level |
 
-Register the SignFlow redirect URI as `{your-origin}/api/auth/callback`.
+Register the SignFlow redirect URI as `https://icensus.dos.gov.jo/icensus/auth/sanad/callback`.
 
 ## Auth flow (SANAD)
 
 1. `GET /api/auth/login` → SignFlow `/signflow/v2/auth` (PKCE + state)
-2. Callback `GET /api/auth/callback` → token + userinfo → encrypted session cookie
+2. Callback `GET /icensus/auth/sanad/callback` → token + userinfo → encrypted session cookie
 3. `POST /api/auth/logout` → revoke token + clear cookies
 
 ## Scripts
